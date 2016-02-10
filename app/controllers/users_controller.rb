@@ -30,9 +30,11 @@ class UsersController < ApplicationController
     end
   end 
   def followings
+    @Followings = followings
   end
 
   def followers
+    @followers = followers
   end 
 
   private
