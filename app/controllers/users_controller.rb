@@ -28,7 +28,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  
+  def following
   end
+
+  def follower
+  end 
 
   private
 
@@ -40,6 +45,6 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
-
+  end
   end
 end
