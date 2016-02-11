@@ -29,12 +29,15 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end 
+  
   def followings
-    @Followings = followings
+    @user = User.find(params[:id])
+    @users = @user.following_users
   end
 
   def followers
-    @followers = followers
+    @user = User.find(params[:id])
+    @users = @user.follower_users
   end 
 
   private
