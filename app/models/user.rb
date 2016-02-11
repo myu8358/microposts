@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # プロフィールは400文字以内
   validates :profile , length: { maximum: 400 }
   # 地域は100文字以下
-  validates :region, presence: true, length: { maximum: 100 }, on: :update
+  validates :region, presence: true, length: { maximum: 30 }, on: :update
   
     before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
