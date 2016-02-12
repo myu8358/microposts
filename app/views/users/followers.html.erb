@@ -1,12 +1,6 @@
 <h1>Follower List</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :follower %>
-      <%= f.text_area :follower, class: 'form-control' %>
-      
-      <%= f.submit "update", class: "btn btn-large btn-primary" %>
-    <% end %>
+<% @users.each do |user| %>
+名前:<%= user.name %>
+ <br>
+<% end %>
