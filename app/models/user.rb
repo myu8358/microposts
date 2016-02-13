@@ -20,7 +20,16 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
     has_many :follower_users, through: :follower_relationships, source: :follower
-    
+
+    has_many :favor_connections, class_name:  "Connection",
+                                     foreign_key: "favor_id",
+                                     dependent:   :destroy
+    has_many :favorite_users, through: :favorite_connections, source: :favored
+    has_many :favor_connections, class_name:  "Connection",
+                                    foreign_key: "favored_id",
+                                    dependent:   :destroy
+    has_many :favor_users, through: :favor_connections, source: :favor
+
   # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -36,25 +45,24 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
-  def feed_items
-    Micropost.where(user_id: following_user_ids + [self.id])
-  end
+  
   # 他のユーザーをお気に入りにする
   def favorite(other_user)
-    following_relationships.find_or_create_by(followed_id: other_user.id)
+    favor_connections.find_or_create_by(favored_id: other_user.id)
   end
 
-  # お気に入りにしているユーザーをお気に入りから外す
+  # お気に入りしているユーザーをお気に入りから外す
   def unfavorite(other_user)
-    favor_relation_ship = favor_relation_ships.find_by(favorite_id: other_user.id)
-    favor_relation_ship.destroy if favor_relation_ship
+    favor_connections = favor_connections.find_by(favored_id: other_user.id)
+    favor_connections.destroy if favor_connection
   end
 
   # あるユーザーをお気に入りにしているかどうか？
   def favorite?(other_user)
-    following_users.include?(other_user)
+    favor_users.include?(other_user)
   end
+  
   def feed_items
-    Micropost.where(user_id: favorite_user_ids + [self.id])
+    Micropost.where(user_id: following_user_ids + [self.id])
   end
 end

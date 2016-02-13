@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212120254) do
+ActiveRecord::Schema.define(version: 20160213012013) do
+
+  create_table "connections", force: :cascade do |t|
+    t.integer  "favor_id"
+    t.integer  "favored_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "connections", ["favor_id", "favored_id"], name: "index_connections_on_favor_id_and_favored_id", unique: true
+  add_index "connections", ["favor_id"], name: "index_connections_on_favor_id"
+  add_index "connections", ["favored_id"], name: "index_connections_on_favored_id"
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"

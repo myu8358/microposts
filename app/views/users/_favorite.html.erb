@@ -1,4 +1,5 @@
-<%= form_for(current_user.favor_relation_ships.build, remote: true) do |f| %>
+<%= form_for(current_user.favor_connections.build, remote: true) do |f| %>
   <div><%= hidden_field_tag :favored_id, @user.id %></div>
   <%= f.submit "Favorite", class: "btn btn-primary" %>
 <% end %>
+
