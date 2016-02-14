@@ -20,13 +20,19 @@ class UsersController < ApplicationController
   end
   
   def edit
+    unless (@user==current_user)
+      redirect_to root_path , notice: 'ログインしてください'
+    end
   end
-
+  
   def update
     if @user.update(user_params)
       redirect_to root_path , notice: 'プロフィールを編集しました'
     else
       render 'edit'
+    end
+    unless (@user==current_user)
+      redirect_to root_path , notice: 'ログインしてください'
     end
   end 
   
