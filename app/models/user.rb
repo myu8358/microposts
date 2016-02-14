@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
                                      foreign_key: "favor_id",
                                      dependent:   :destroy
     has_many :favorite_users, through: :favorite_connections, source: :favored
-    has_many :favor_connections, class_name:  "Connection",
+    has_many :favorite_connections, class_name:  "Connection",
                                     foreign_key: "favored_id",
                                     dependent:   :destroy
     has_many :favor_users, through: :favor_connections, source: :favor
@@ -53,13 +53,13 @@ class User < ActiveRecord::Base
 
   # お気に入りしているユーザーをお気に入りから外す
   def unfavorite(other_user)
-    favor_connections = favor_connections.find_by(favored_id: other_user.id)
-    favor_connections.destroy if favor_connection
+    favor_connection = favor_connections.find_by(favored_id: other_user.id)
+    favor_connection.destroy if favor_connection
   end
 
   # あるユーザーをお気に入りにしているかどうか？
   def favorite?(other_user)
-    favor_users.include?(other_user)
+    favorite_users.include?(other_user)
   end
   
   def feed_items
