@@ -1,7 +1,7 @@
 <h1>Following List</h1>
 
 <% @users.each do |user| %>
-名前:<%= user.name %>
+<li><%= link_to user.name, user_path(user) %></li>
  <br>
 <% end %>
     
