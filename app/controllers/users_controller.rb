@@ -47,9 +47,12 @@ class UsersController < ApplicationController
   end 
 
   def favorite
-    @user = current_user.follower_users(params[:id])
-    @microposts = @user.microspots
+    @user = current_user.favorite_users(params[:id])
   end 
+  
+  def index
+  @users = User.all
+  end
 
   private
 

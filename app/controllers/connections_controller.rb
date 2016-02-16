@@ -7,7 +7,7 @@ class ConnectionsController < ApplicationController
   end
 
   def destroy
-    @user = current_user.favor_connections.find(params[:id]).favored
+    @user = current_user.favorite_connections.find(params[:id]).favored
     current_user.unfavorite(@user)
   end
 end

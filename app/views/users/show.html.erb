@@ -15,7 +15,7 @@
     <li><%= link_to "Followers", followers_user_path(@user)  %></li>
   </ul>
   </li>
-  <li><%= link_to "My Favorite", '#' %></li>
+  <li><%= link_to "My Favorite", users_path %></li>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
