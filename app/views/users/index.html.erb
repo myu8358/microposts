@@ -1,16 +1,13 @@
-<ul>
+<div class="container">
   <% @users.each do |u| %>
-    <li class="clearfix">
+    <div class="row">
+      <div class="col-md-4">
       <%= link_to gravatar_for(u), u %>
       <%= link_to u.name, u %>
-    </li>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="col-md-4">
-          <%= render partial: 'favorite_form', locals: {user: u} if logged_in? %>
-        <div/>
-      <div/>
-    <div/>  
+      </div>
+      <div class="col-md-4">
+        <%= render partial: 'favorite_form', locals: {user: u} if logged_in? %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
