@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end 
   
   def index
-  @users = User.all
+    @users = User.all
   end
 
   private

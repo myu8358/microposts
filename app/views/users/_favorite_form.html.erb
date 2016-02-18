@@ -1,9 +1,9 @@
-<% if current_user != @user %>
+<% if current_user != user %>
   <div id="favorite_form">
-  <% if current_user.favorite?(@user) %>
-    <%= render 'unfavorite' %>
+  <% if current_user.favorite?(user) %>
+    <%= render partial: 'unfavorite', locals:{user: user} %>
   <% else %>
-    <%= render 'favorite' %>
+    <%= render partial: 'favorite', locals:{user: user} %>
   <% end %>
   </div>
 <% end %>
