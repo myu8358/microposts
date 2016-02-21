@@ -1,4 +1,4 @@
-<%= form_for(favorite_user_path(user) ,
+<%= form_for(favorite_user_path(user) ,url:unfavorite_user_path(user),
              remote: true) do |f| %>
   <%= f.submit "Unfavorite", class: "btn" %>
 <% end %>

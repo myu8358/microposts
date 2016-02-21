@@ -1,9 +1,9 @@
 <% if current_user != user %>
-  <div id="favorite_form">
+  <div id='user-<%= user.id %>'>
   <% if current_user.favorite?(user) %>
     <%= render partial: 'unfavorite', locals:{user: user} %>
   <% else %>
     <%= render partial: 'favorite', locals:{user: user} %>
   <% end %>
-  </div>
+  </div>  
 <% end %>

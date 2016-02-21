@@ -53,8 +53,7 @@ class User < ActiveRecord::Base
 
   # お気に入りしているユーザーをお気に入りから外す
   def unfavorite(other_user)
-    favor_connection = favor_connections.find_by(favored_id: other_user.id)
-    favor_connection.destroy if favor_connection
+    favor_connections.find_by(favored_id: other_user.id).destroy
   end
 
   # あるユーザーをお気に入りにしているかどうか？

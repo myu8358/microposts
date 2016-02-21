@@ -1,5 +1,5 @@
 class ConnectionsController < ApplicationController
-    before_action :logged_in_user
+before_action :logged_in_user
 
   def create
     @user = User.find(params[:favored_id])
@@ -11,4 +11,3 @@ class ConnectionsController < ApplicationController
     current_user.unfavorite(@user)
   end
 end
-

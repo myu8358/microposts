@@ -47,10 +47,17 @@ class UsersController < ApplicationController
   end 
 
   def favorite
-    @user = current_user.favorite_users(params[:id])
+    @user=User.find(params[:id])
+    current_user.favorite(@user)
+  end 
+  
+  def unfavorite
+    @user=User.find(params[:id])
+    current_user.unfavorite(@user)
   end 
   
   def index
+    @user=User
     @users = User.all
   end
 
