@@ -22,14 +22,13 @@ class User < ActiveRecord::Base
     has_many :follower_users, through: :follower_relationships, source: :follower
 
     has_many :favor_connections, class_name:  "Connection",
-                                     foreign_key: "favor_id",
+                                     foreign_key: "favorite_id",
                                      dependent:   :destroy
-    has_many :favorite_users, through: :favorite_connections, source: :favored
+    has_many :favor_users, through: :favor_connections, source: :favored
     has_many :favorite_connections, class_name:  "Connection",
                                     foreign_key: "favored_id",
                                     dependent:   :destroy
-    has_many :favor_users, through: :favor_connections, source: :favor
-
+    has_many :favorite_users, through: :favorite_connections, source: :favorite
   # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.find_or_create_by(followed_id: other_user.id)
