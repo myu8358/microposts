@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :favorite, :unfavorite]
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)

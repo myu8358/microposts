@@ -48,12 +48,12 @@ class User < ActiveRecord::Base
   
   # 他のユーザーをお気に入りにする
   def favorite(other_user)
-    favor_connections.find_or_create_by(favored_id: other_user.id)
+    favorite_connections.find_or_create_by(favorite_id: other_user.id)
   end
 
   # お気に入りしているユーザーをお気に入りから外す
   def unfavorite(other_user)
-    favor_connections.find_by(favored_id: other_user.id).destroy
+    favorite_connections.find_by(favorite_id: other_user.id).destroy
   end
 
   # あるユーザーをお気に入りにしているかどうか？
